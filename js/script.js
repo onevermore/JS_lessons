@@ -22,12 +22,12 @@ console.log('Цель заработать ' + mission + ' долларов');
 /* Привожу строку addExpenses к нижнему регистру */
 addExpenses = addExpenses.toLowerCase();
 
-let arr= addExpenses.split(', ');
+
 
 /* Разбиваю строку на массив и массив в консоль */
-for (let i = 0; i < arr.length; i++) {
-    console.log( arr[i]) ;
-}
+let arr= addExpenses.split(', ');  
+console.log( arr) ;
+
 
 /* Объявить переменную budgetDay, присвоить ей дневной бюджет и вывести в консоль */
 let budgetDay = money / 30;
