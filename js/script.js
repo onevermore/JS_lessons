@@ -1,11 +1,15 @@
 'use strict';
 
-let money = 1600;
+let money = prompt('Ваш месячный доход?');
 let income = 'фриланс';
-let addExpenses = 'Интернет, автобусы, кафешки';
-let deposit = true;
+let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую') ;
+let deposit = confirm('Есть ли у вас депозит в банке?');
 let mission = 500;
 let period = 2;
+let exp1 = prompt('Введите обязательную статью расходов?');
+let am1 = prompt('Во сколько это обойдется?');
+let exp2 = prompt('Введите обязательную статью расходов?');
+let am2 = prompt('Во сколько это обойдется?');
 
 /* Вывожу в консоль тип данных значений переменных money, income, deposit; */
 console.log(typeof money);
@@ -22,13 +26,32 @@ console.log('Цель заработать ' + mission + ' долларов');
 /* Привожу строку addExpenses к нижнему регистру */
 addExpenses = addExpenses.toLowerCase();
 
-let arr= addExpenses.split(', ');
-
 /* Разбиваю строку на массив и массив в консоль */
-for (let i = 0; i < arr.length; i++) {
-    console.log( arr[i]) ;
-}
+let arr= addExpenses.split(', ');  
+console.log( arr) ;
+
+let budgetMonth = money-am1-am2;
+let months = Math.ceil( mission / budgetMonth );
+
+console.log('Бюджет на месяц: ', budgetMonth);
+console.log('Кол-во месяцев для достижения цели: ', months);
 
 /* Объявить переменную budgetDay, присвоить ей дневной бюджет и вывести в консоль */
-let budgetDay = money / 30;
-console.log('budgetDay: ', budgetDay);
+let budgetDay = Math.floor( budgetMonth/ 30 );
+console.log('Бюджет на день: ', budgetDay);
+
+if (budgetDay>20) {
+   console.log('У вас высокий уровень дохода'); 
+} 
+else if (budgetDay<20 && budgetDay>10) {
+    console.log('У вас средний уровень дохода'); 
+}
+else if (budgetDay<10) {
+    console.log('К сожалению у вас уровень дохода ниже среднего'); 
+}
+else if (budgetDay<0) {
+    console.log('Что то пошло не так');
+}
+else {
+ console.log('Ваш дневной бюджет 0, 10 или 20');
+}
