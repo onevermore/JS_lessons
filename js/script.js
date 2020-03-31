@@ -1,15 +1,15 @@
 'use strict';
 
-let money = prompt('Ваш месячный доход?');
+let money = +prompt('Ваш месячный доход?');
 let income = 'фриланс';
 let addExpenses = prompt('Перечислите возможные расходы за рассчитываемый период через запятую') ;
 let deposit = confirm('Есть ли у вас депозит в банке?');
 let mission = 500;
 let period = 2;
 let exp1 = prompt('Введите обязательную статью расходов?');
-let am1 = prompt('Во сколько это обойдется?');
+let am1 = +prompt('Во сколько это обойдется?');
 let exp2 = prompt('Введите обязательную статью расходов?');
-let am2 = prompt('Во сколько это обойдется?');
+let am2 = +prompt('Во сколько это обойдется?');
 
 /* Вывожу в консоль тип данных значений переменных money, income, deposit; */
 console.log(typeof money);
