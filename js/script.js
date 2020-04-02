@@ -100,7 +100,7 @@ let getStatusIncome = function() {
      else if (budgetDay<20 && budgetDay>10) {
          console.log('У вас средний уровень дохода'); 
      }
-     else if (budgetDay<10 && budgetDay>0) {
+     else if (budgetDay<=10 && budgetDay>=0) {
          console.log('К сожалению у вас уровень дохода ниже среднего'); 
      }
      else if (budgetDay<0) {
