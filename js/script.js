@@ -52,6 +52,7 @@ console.log(exp);
 
 let expensesAmount = getExpensesMonth();
 
+//Накопления за месяц (Доходы минус расходы)
 const getAccumulatedMonth = function(){
    return money - expensesAmount;
 };
@@ -60,10 +61,15 @@ const getAccumulatedMonth = function(){
 console.log('Расходы за месяц: ' + expensesAmount);
 
 let accumulatedMonth = getAccumulatedMonth();
+console.log('Накопления за месяц (Доходы минус расходы): ', accumulatedMonth);
 
+
+//Подсчитывает за какой период будет достигнута цель (в месяцах)
 const getTargetMonth = function(){
-    return Math.ceil( mission / accumulatedMonth );
+   // return Math.ceil( mission / accumulatedMonth );
+   return  mission / accumulatedMonth ;
 };
+
 
 /* Привожу строку addExpenses к нижнему регистру */
 addExpenses = addExpenses.toLowerCase();
@@ -74,19 +80,18 @@ console.log( arr ) ;
 
 let result;
 
-if (getTargetMonth() < 0 )
-result = 'Цель не будет достигнута'
-else result = 'Цель будет достигнута';
-
-console.log( result +' за ' + getTargetMonth() + ' месяц(-а, -ев)');
-
+if (getTargetMonth() < 0 ) {
+console.log('Цель не будет достигнута');
+    }
+else { 
+    console.log( 'Цель будет достигнута за ' + Math.ceil(getTargetMonth()) + ' месяц(-а, -ев)');
+   }
 
 
 
 /* Объявить переменную budgetDay, присвоить ей дневной бюджет и вывести в консоль */
-let budgetDay = Math.floor( accumulatedMonth / 30 );
-console.log('Бюджет на день: ', budgetDay);
-
+let budgetDay =  accumulatedMonth / 30 ;
+    console.log('Бюджет на день: ', Math.floor( accumulatedMonth / 30 ));
 
 let getStatusIncome = function() {
     if (budgetDay>20) {
@@ -95,15 +100,14 @@ let getStatusIncome = function() {
      else if (budgetDay<20 && budgetDay>10) {
          console.log('У вас средний уровень дохода'); 
      }
-     else if (budgetDay<10) {
+     else if (budgetDay<10 && budgetDay>0) {
          console.log('К сожалению у вас уровень дохода ниже среднего'); 
      }
      else if (budgetDay<0) {
          console.log('Что то пошло не так');
      }
-     else {
-      console.log('Ваш дневной бюджет 0, 10 или 20');
-     }    
+
+   
 };
 
 getStatusIncome();
