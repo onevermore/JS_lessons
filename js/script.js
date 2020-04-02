@@ -61,8 +61,6 @@ const getAccumulatedMonth = function(){
 console.log('Расходы за месяц: ' + expensesAmount);
 
 let accumulatedMonth = getAccumulatedMonth();
-console.log('Накопления за месяц (Доходы минус расходы): ', accumulatedMonth);
-
 
 //Подсчитывает за какой период будет достигнута цель (в месяцах)
 const getTargetMonth = function(){
@@ -78,15 +76,12 @@ addExpenses = addExpenses.toLowerCase();
 let arr = addExpenses.split(', ');  
 console.log( arr ) ;
 
-let result;
-
 if (getTargetMonth() < 0 ) {
 console.log('Цель не будет достигнута');
     }
 else { 
     console.log( 'Цель будет достигнута за ' + Math.ceil(getTargetMonth()) + ' месяц(-а, -ев)');
    }
-
 
 
 /* Объявить переменную budgetDay, присвоить ей дневной бюджет и вывести в консоль */
@@ -97,7 +92,7 @@ let getStatusIncome = function() {
     if (budgetDay>20) {
         console.log('У вас высокий уровень дохода'); 
      } 
-     else if (budgetDay<20 && budgetDay>10) {
+     else if (budgetDay<=20 && budgetDay>10) {
          console.log('У вас средний уровень дохода'); 
      }
      else if (budgetDay<=10 && budgetDay>=0) {
