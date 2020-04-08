@@ -43,7 +43,6 @@ const incItems = document.querySelector('.income-items');
 const incomeTitle = incItems.querySelector('.income-title');
 console.log('incomeTitle: ', incomeTitle);
 
-
 const incomeAmount = document.querySelector('.income-amount');
 console.log('incomeAmount: ', incomeAmount);
 
