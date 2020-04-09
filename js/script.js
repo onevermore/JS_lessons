@@ -15,10 +15,9 @@ const checkBox = document.querySelector('#deposit-check');
 console.log('checkBox: ', checkBox);
 
 //Поля для ввода возможных доходов (additional_income-item) при помощи querySelectorAll
-const addIncome1 = document.querySelectorAll('.additional_income-item')[0];
-console.log('addIncome1: ', addIncome1);
-const addIncome2 = document.querySelectorAll('.additional_income-item')[1];
-console.log('addIncome2: ', addIncome2);
+const addIncome1 = document.querySelectorAll('.additional_income-item');
+console.log('addIncome1: ', addIncome1[0]);
+console.log('addIncome2: ', addIncome1[1]);
 
 //Каждый элемент в правой части программы через класс, которые имеют в имени класса "-value"
 const budgetMonth = document.querySelector('.budget_month-value');
@@ -46,8 +45,12 @@ console.log('incomeTitle: ', incomeTitle);
 const incomeAmount = document.querySelector('.income-amount');
 console.log('incomeAmount: ', incomeAmount);
 
-const expensesTitle = document.querySelector('.expenses-title');
+
+const expTitle = document.querySelector('.expenses-items');
+const expensesTitle = expTitle.querySelector('.expenses-title');
+
 console.log('expensesTitle: ', expensesTitle);
+
 const expensesAmount = document.querySelector('.expenses-amount');
 console.log('expensesAmount: ', expensesAmount);
 
