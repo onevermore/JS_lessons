@@ -10,7 +10,6 @@ let incomePlus = btnPlus[0];
 let expensesPlus = btnPlus[1];
 
 const checkBox = document.querySelector('#deposit-check');
-
 const addIncomeItem = document.querySelectorAll('.additional_income-item');
 const budgetMonthV = document.querySelector('.budget_month-value');
 const budgetDayV = document.querySelector('.budget_day-value');
@@ -19,16 +18,11 @@ const addIncomeV = document.querySelector('.additional_income-value');
 const addExpensesV = document.querySelector('.additional_expenses-value');
 const incomePeriodV = document.querySelector('.income_period-value');
 const targetMonthV = document.querySelector('.target_month-value');
-
 const incItems = document.querySelector('.income-items');
 const incomeTitle = incItems.querySelector('.income-title');
-
 let incomeItems = document.querySelectorAll('.income-items');
-
 const expTitle = document.querySelector('.expenses-items');
 const expensesTitle = expTitle.querySelector('.expenses-title');
-
-
 let expensesItems = document.querySelectorAll('.expenses-items');
 const addExpensesItem = document.querySelector('.additional_expenses-item');
 
@@ -36,10 +30,6 @@ const targetAmount = document.querySelector('.target-amount');
 const salaryAmount = document.querySelector('.salary-amount');
 const period = document.querySelector('[type="range"]');
 let periodValue = document.querySelector('.period-amount');
-
-
-
-
 
 let isNumber = function (n) {
     return !isNaN(parseFloat(n)) && isFinite(n);
@@ -84,10 +74,8 @@ let appData = {
          item.disabled = true;
         }, this);
         btn1.style.display = 'none';
-        cancelBtn.style.display = 'block';
-        
+        cancelBtn.style.display = 'block';      
      }
-
     },
 
     showResult: function () {
@@ -97,7 +85,6 @@ let appData = {
         expensesMonthV.value = this.expensesMonth;
         addExpensesV.value = this.addExpenses.join(', ');
         addIncomeV.value = this.addIncome.join(', ');
-
         targetMonthV.value = Math.ceil(this.getTargetMonth());
         incomePeriodV.value = this.calcSavedMoney();
         period.addEventListener('input', function () {
@@ -107,15 +94,34 @@ let appData = {
     },
 
 reset: function () {
-  /* cancelBtn.style.display = 'none';
+   cancelBtn.style.display = 'none';
     btn1.style.display = 'block';
 
   let allData = document.querySelectorAll('[type=text]');
+    period.value=1;
 
     allData.forEach(function (item) {
         item.disabled = false;
         item.value = '';
        }, this);
+
+
+       let len = incomeItems.length;
+
+   while (len>1) {
+    incomeItems[len-1].remove();
+       len--;
+   }
+   incomePlus.style.display = 'block';
+
+      
+   let lenExp = expensesItems.length;
+
+   while (lenExp>1) {
+    expensesItems[lenExp-1].remove();
+       lenExp--;
+   }
+   expensesPlus.style.display = 'block';
 
        this.income = {};
        this.addIncome = [];
@@ -129,10 +135,8 @@ reset: function () {
        this.deposit = false;
        this.percentDeposit = 0;
        this.moneyDeposit = 0;
-*/
-    document.location.reload(true);
 
-    
+  //  document.location.reload(true);   
 },
 
     addExpensesBlock: function () {
