@@ -12,7 +12,6 @@ let expensesPlus = btnPlus[1];
 const checkBox = document.querySelector('#deposit-check');
 
 const addIncomeItem = document.querySelectorAll('.additional_income-item');
-
 const budgetMonthV = document.querySelector('.budget_month-value');
 const budgetDayV = document.querySelector('.budget_day-value');
 const expensesMonthV = document.querySelector('.expenses_month-value');
