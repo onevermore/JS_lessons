@@ -9,7 +9,7 @@ const btnPlus = document.getElementsByTagName('button');
 let incomePlus = btnPlus[0];
 let expensesPlus = btnPlus[1];
 
-const checkBox = document.querySelector('#deposit-check');
+const depositCheckBox = document.querySelector('#deposit-check');
 const addIncomeItem = document.querySelectorAll('.additional_income-item');
 const budgetMonthV = document.querySelector('.budget_month-value');
 const budgetDayV = document.querySelector('.budget_day-value');
@@ -99,24 +99,23 @@ reset: function () {
 
   let allData = document.querySelectorAll('[type=text]');
     period.value=1;
-
+    periodValue.textContent = period.value;
+    depositCheckBox.checked = false;
     allData.forEach(function (item) {
         item.disabled = false;
         item.value = '';
        }, this);
 
 
-       let len = incomeItems.length;
-
-   while (len>1) {
-    incomeItems[len-1].remove();
-       len--;
+       let lenInc = incomeItems.length;
+   while (lenInc>1) {
+    incomeItems[lenInc-1].remove();
+       lenInc--;
    }
    incomePlus.style.display = 'block';
 
       
    let lenExp = expensesItems.length;
-
    while (lenExp>1) {
     expensesItems[lenExp-1].remove();
        lenExp--;
