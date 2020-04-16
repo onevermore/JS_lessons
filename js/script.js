@@ -31,7 +31,7 @@ const salaryAmount = document.querySelector('.salary-amount');
 const period = document.querySelector('[type="range"]');
 const periodValue = document.querySelector('.period-amount');
 
-const isNumber = function (n) {
+const isNumber = (n) => {
     return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
@@ -88,7 +88,7 @@ class AppData {
 
 
     showResult() {
-        const _this = this;
+        //const _this = this;
         budgetMonthV.value = this.budgetMonth;
         budgetDayV.value = this.budgetDay;
         expensesMonthV.value = this.expensesMonth;
@@ -96,8 +96,8 @@ class AppData {
         addIncomeV.value = this.addIncome.join(', ');
         targetMonthV.value = Math.ceil(this.getTargetMonth());
         incomePeriodV.value = this.calcSavedMoney();
-        period.addEventListener('input', function () {    
-           incomePeriodV.value = _this.calcSavedMoney();
+        period.addEventListener('input',  () => {    
+           incomePeriodV.value = this.calcSavedMoney(); //_this
         }); 
     }
 
@@ -272,7 +272,7 @@ class AppData {
             
             expensesPlus.addEventListener('click', this.addExpensesBlock);
             incomePlus.addEventListener('click', this.addIncomeBlock);
-            period.addEventListener('input', function () {
+            period.addEventListener('input', () => {
                 periodValue.textContent = period.value;
             });               
             }
