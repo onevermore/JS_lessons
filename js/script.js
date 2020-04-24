@@ -44,35 +44,39 @@ window.addEventListener('DOMContentLoaded', () => {
         const intervalId = setInterval(updateClock, 1000);
         //updateClock();
     };
-    countTimer('24 april 2020');
+    countTimer('26 april 2020');
 
     //menu
-
     const toggleMenu = () => {
 
         const btnMenu = document.querySelector('.menu'),
-            menu = document.querySelector('menu'),
-            closeBtn = document.querySelector('.close-btn'),
-            menuItems = menu.querySelectorAll('ul>li');
+            menu = document.querySelector('menu');
 
         const handlerMenu = () => {
             menu.classList.toggle('active-menu');
         };
 
         btnMenu.addEventListener('click', handlerMenu);
-        closeBtn.addEventListener('click', handlerMenu);
 
-        menuItems.forEach(elem => elem.addEventListener('click', handlerMenu));
+        menu.addEventListener('click', event => {
+            const target = event.target;
+
+            if (target.closest('menu') && !target.matches('.active-menu')) {
+                handlerMenu();
+            } else {
+                return;
+            }
+
+        });
+
     };
 
     toggleMenu();
 
-
     //popup
     const togglePopup = () => {
         const popup = document.querySelector('.popup'),
-            popupBtn = document.querySelectorAll('.popup-btn'),
-            popupClose = document.querySelector('.popup-close');
+            popupBtn = document.querySelectorAll('.popup-btn');
 
         const showPopup = () => {
 
@@ -93,12 +97,69 @@ window.addEventListener('DOMContentLoaded', () => {
 
         popupBtn.forEach(elem => elem.addEventListener('click', showPopup));
 
-        popupClose.addEventListener('click', () => {
-            popup.style.display = 'none';
+        popup.addEventListener('click', event => {
+            let target = event.target;
+            if (target.classList.contains('popup-close')) {
+                popup.style.display = 'none';
+
+            } else {
+                target = target.closest('.popup-content');
+
+                if (!target) {
+                    popup.style.display = 'none';
+                }
+            }
+
+
+
         });
+
     };
 
     togglePopup();
+
+
+    //tabs
+    const tabs = () => {
+        const tabHeader = document.querySelector('.service-header'),
+            tab = document.querySelectorAll('.service-header-tab'),
+            tabContent = document.querySelectorAll('.service-tab');
+
+        //функция будет перебирать все табы, находить нужный и его показывать, а другие скрывать
+        const toggleTabContent = index => {
+            for (let i = 0; i < tabContent.length; i++) {
+                if (index === i) {
+                    tab[i].classList.add('active');
+                    tabContent[i].classList.remove('d-none');
+                } else {
+                    tabContent[i].classList.add('d-none');
+                    tab[i].classList.remove('active');
+                }
+
+            }
+        };
+
+
+        tabHeader.addEventListener('click', event => {
+            //получаем элемент, на который кликаем
+            let target = event.target;
+            target = target.closest('.service-header-tab');
+
+            //проверяем есть ли у нашего Таргет класс service-header-tab
+            if (target) {
+                //проверяем на какой именно Таб кликнули
+
+                tab.forEach((item, index) => {
+
+                    if (item === target) {
+                        toggleTabContent(index);
+                    }
+                });
+            }
+        });
+    };
+
+    tabs();
 
 
 });
