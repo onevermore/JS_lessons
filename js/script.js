@@ -163,7 +163,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
     //slider
-
     const slider = () => {
 
         const slide = document.querySelectorAll('.portfolio-item'),
@@ -272,8 +271,50 @@ window.addEventListener('DOMContentLoaded', () => {
         startSlide(1500);
     };
 
-
     slider();
+
+    const toggleImage = () => {
+
+        const images = document.querySelector('.command');
+
+        const changeImg = event => {
+            const target = event.target;
+            const src = target.src;
+            target.src = target.dataset.img;
+            target.dataset.img = src;
+        };
+
+        images.addEventListener('mouseover', event => {
+
+            if (!event.target.matches('.command__photo')) {
+                return;
+            }
+            changeImg(event);
+        });
+
+        images.addEventListener('mouseout', event => {
+            if (!event.target.matches('.command__photo')) {
+                return;
+            }
+            changeImg(event);
+        });
+    };
+    toggleImage();
+
+
+
+    const onlyNum = () => {
+
+        const inputs = document.querySelectorAll(' input[type=number]');
+
+        inputs.forEach(elem => {
+            elem.addEventListener('input', () => {
+                elem.value = elem.value.replace(/\D/g, '');
+            });
+        });
+    };
+
+    onlyNum();
 
 
 });
