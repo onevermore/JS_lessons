@@ -348,9 +348,20 @@ window.addEventListener('DOMContentLoaded', () => {
             if (typeValue && squareValue) {
                 total = price * typeValue * squareValue * countValue * dayValue;
             }
+           
+           //счётчик результата (перебор цифр)
+            let count = 0;
 
+            const totalCounter = () => {
+                count++;
+                if (count <= total) {
+                    totalValue.textContent = count;
+                } else {
+                    clearInterval(intervalId);
+                }
+            };
 
-            totalValue.textContent = total;
+            const intervalId = setInterval(totalCounter, 1);
 
 
         };
@@ -367,7 +378,7 @@ window.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    
+
     calc(100);
 
 
