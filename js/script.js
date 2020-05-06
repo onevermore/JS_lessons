@@ -44,7 +44,7 @@ window.addEventListener('DOMContentLoaded', () => {
         const intervalId = setInterval(updateClock, 1000);
         //updateClock();
     };
-    countTimer('26 april 2020');
+    countTimer('12 may 2020');
 
     //menu
     const toggleMenu = () => {
@@ -364,10 +364,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-
-
         };
 
         calcBlock.addEventListener('change', event => {
@@ -383,6 +379,8 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     calc(100);
+
+
 
     const formValid = () => {
 
@@ -410,6 +408,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     formValid();
 
+
     // send-ajax-form
 
     const sendForm = () => {
@@ -419,7 +418,6 @@ window.addEventListener('DOMContentLoaded', () => {
             successMessage = 'Спасибо! Мы скоро с Вами свяжемся!';
 
         // получаем форму
-        //const form = document.getElementById('form1');
         const forms = document.querySelectorAll('form');
 
         const statusMessage = document.createElement('div');
@@ -428,7 +426,7 @@ window.addEventListener('DOMContentLoaded', () => {
             'color:white;';
 
         //вешаем событие не на кнопку, а на форму
-        //
+
         forms.forEach(form => {
             form.addEventListener('submit', event => {
                 event.preventDefault();
@@ -444,51 +442,52 @@ window.addEventListener('DOMContentLoaded', () => {
                     body[key] = val;
                 });
 
-                postData(body, () => {
-                    statusMessage.textContent = successMessage;
-                }, error => {
-                    console.log('error: ', error);
-                    statusMessage.textContent = errorMessage;
-                });
+
+                const resetForm = () => {
+                    [...form.elements].forEach(elem => {
+                        if (elem.tagName.toLowerCase() === 'input')
+                            elem.value = '';
+                    });
+                };
 
 
-                [...form.elements].forEach(elem => {
-                    if (elem.tagName.toLowerCase() === 'input')
-                        elem.value = '';
-                });
-
+                postData(body)
+                    .then(() => {
+                        statusMessage.textContent = successMessage;
+                        resetForm();
+                    })
+                    .catch(error => {
+                        console.log('error: ', error);
+                        statusMessage.textContent = errorMessage;
+                    });
 
             });
-
         });
 
 
 
         //функция запроса на сервер
-        const postData = (body, outputData, errorData) => {
+        const postData = body => new Promise((resolve, reject) => {
             const request = new XMLHttpRequest();
-
             //после создания request желательно отслеживать readystatechange
             request.addEventListener('readystatechange', () => {
-
                 if (request.readyState !== 4) {
                     return;
                 }
                 if (request.status === 200) {
-                    outputData();
+                    resolve();
                 } else {
-                    errorData(request.status);
+                    reject(request.status);
                 }
             });
-
             request.open('POST', './server.php');
             request.setRequestHeader('Content-Type', 'application/json');
             request.send(JSON.stringify(body));
-        };
 
 
-
+        });
     };
+
     sendForm();
 
 
