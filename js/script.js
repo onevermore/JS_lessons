@@ -451,13 +451,18 @@ window.addEventListener('DOMContentLoaded', () => {
                 };
 
 
+
+
                 postData(body)
-                    .then(() => {
+                    .then(response => {
+                        if (response.status !== 200) {
+                            throw new Error('status not 200');
+                        }
                         statusMessage.textContent = successMessage;
                         resetForm();
                     })
                     .catch(error => {
-                        console.log('error: ', error);
+                        console.error(error);
                         statusMessage.textContent = errorMessage;
                     });
 
@@ -467,25 +472,18 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
         //функция запроса на сервер
-        const postData = body => new Promise((resolve, reject) => {
-            const request = new XMLHttpRequest();
-            //после создания request желательно отслеживать readystatechange
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState !== 4) {
-                    return;
-                }
-                if (request.status === 200) {
-                    resolve();
-                } else {
-                    reject(request.status);
-                }
-            });
-            request.open('POST', './server.php');
-            request.setRequestHeader('Content-Type', 'application/json');
-            request.send(JSON.stringify(body));
-
+        const postData = body => fetch('./server.php', {
+            method: 'POST',
+            mode: 'same-origin',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            referrer: 'client',
+            body: JSON.stringify(body)
 
         });
+
+
     };
 
     sendForm();
